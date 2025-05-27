@@ -77,20 +77,57 @@ namespace first
             void RemoveToDo()
             {
                 int ToDoCount = ToDos.Count;
-                Console.WriteLine($"Todo items {ToDos[ToDoCount - 1]} is removed successfully");
-                ToDos.RemoveAt(ToDoCount - 1);
+                if (ToDoCount == 0)
+                {
+                    Console.WriteLine("There are no todos to remove");
+                    return;
+                }
+                else
+                {
+
+                    bool isValidIndex = false;
+                    do
+                    {
+
+
+                        Console.WriteLine($"enter the index of todo item you want to remove");
+                        showAllTodos();
+                        var inputIndex = Console.ReadLine();
+                        if (string.IsNullOrWhiteSpace(inputIndex) || !int.TryParse(inputIndex, out int index) || index < 1 || index > ToDoCount)
+                        {
+                            Console.WriteLine("Invalid index. Please enter a valid index.");
+                            continue;
+                        }
+                        else
+                        {
+
+                            isValidIndex = true;
+                            Console.WriteLine($"Todo items {ToDos[ToDoCount - 1]} is removed successfully");
+                            ToDos.RemoveAt(ToDoCount - 1);
+                        }
+                    } while (!isValidIndex);
+                }
+
             }
-
-
             // show all Todos
             void showAllTodos()
             {
-                Console.WriteLine($"Your todos List are::");
-                int i = 1;
-                foreach (var todoItem in ToDos)
+                if (ToDos.Count == 0)
                 {
-                    Console.WriteLine($"{i}.{todoItem}");
-                    i++;
+                    Console.WriteLine("There are no todos to show");
+                    return;
+                }
+                else
+                {
+
+
+                    Console.WriteLine($"Your todos List are::");
+                    int i = 1;
+                    foreach (var todoItem in ToDos)
+                    {
+                        Console.WriteLine($"{i}.{todoItem}");
+                        i++;
+                    }
                 }
             }
 
