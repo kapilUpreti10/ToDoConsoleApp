@@ -102,8 +102,8 @@ namespace first
                         {
 
                             isValidIndex = true;
-                            Console.WriteLine($"Todo items {ToDos[ToDoCount - 1]} is removed successfully");
-                            ToDos.RemoveAt(ToDoCount - 1);
+                            Console.WriteLine($"Todo items {ToDos[index - 1]} is removed successfully");
+                            ToDos.RemoveAt(index - 1);
                         }
                     } while (!isValidIndex);
                 }
